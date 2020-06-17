@@ -1,0 +1,13 @@
+1.Create the .git ignore file by running following comand
+	touch .gitignore (for windows : echo "" >.gitignore)
+
+2.If you already have a file checked in, and you want to ignore it, Git will not ignore the file if you
+ add a rule later. In those cases, you must untrack the file first, by running the following command in
+ your terminal:
+	git rm --cached FILENAME
+
+3.You can also create a global .gitignore file, which is a list of rules for ignoring files in every
+ Git repository on your computer. For example, you might create the file at ~/.gitignore_global and add
+ some rules to it.
+ Run the following command in your terminal:
+	git config --global core.excludesfile ~/.gitignore_global

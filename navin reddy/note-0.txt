@@ -1,0 +1,120 @@
+1.Go to python official website and download the letest python interpreter.
+
+
+2.Install the downloaded python interpreter with selecting the add python to path checkbox.
+  (Note: We can check the version of python by typing the following comand line in comand prompt  
+   --> python --version)
+
+   --> sudo apt-get install python3 (Note: In case of linux)
+
+
+
+3.check the pip version by using following comand
+  --> pip --version (NOTE: no need install pip again it will come with the python interpreter by defualt)
+
+  --> sudo apt-get install python3-pip (Note: In case of linux, after instalation of python3, install the pip compulsary. incase of window pip will 	    be install with python pakage )
+
+
+4.install virtual wraper 
+  --> pip install virtualenvwrapper-win
+
+  --> sudo apt-get install python3-venv (Note: In case of linux)
+  --> mkdir Project (Note: In case of linux, if you are creating venv in separate directory no need to create any new directory)
+  -->cd Project
+
+
+5.install virtual environmentpython 
+
+  --> mkvirtualenv test (NOTE:should give diffrent name for different project , here test is the name of the venv)
+
+  --> python3 -m venv env (Note: In case of linux, here env is the name of the venv)  
+  --> source env/bin/activate
+
+[you can check the directory by following comand to ensure all section of venv, (for linux)]
+--> ls
+--> cd bin
+--> ls
+--> cd .. (back to venv )
+--> which python ( we can identify that from where machine is using python executable file like this- /usr/bin/python3, after activating the venv it will change the directory like this- /home/sanjay/Project/env/bin/python3)
+
+
+You can notice below lines after intalation completed :
+
+Using base prefix 'c:\\python\\python37'
+New python executable in C:\Users\SANJAY~1\Envs\test13\Scripts\python.exe
+Installing setuptools, pip, wheel...
+done.
+
+
+6.install django
+  --> pip install django
+
+  --> sudo env/bin/pip3 install django   (Note: In case of linux, I made mistake here, I was installing django without mentioning venv path so it got installed in user/bin directory while runing the manage.py comand machine used to through error as it couldn't import django. can check whether django installed or not using this comand: django-admin)
+
+
+7.Create a directory
+  --> mkdir project
+
+8.Go to project directory
+  --> cd project
+ 
+
+9.Create a project 
+  --> django-admin startproject telusko
+
+  --> django-admin startproject helloworld (Note: In case of linux, can check the directory by ls you will get env, helloworld)
+
+
+10.Go to directory where django admin created project.
+  --> cd telusko
+
+  --> cd helloworld (Note: In case of linux)
+
+
+11.run the django local server and test this in the browser
+  --> python manage.py runserver
+
+  --> python manage.py runserver (Note: In case of linux)
+
+
+12.CRTL+c to stop server
+
+(NOTE:skip step 13,14,15 & 16 if vs code is already installed)
+
+13.VS setup if vs code is not installed -->https://www.youtube.com/watch?v=dNFgRUD2w68
+
+
+
+14.Ensure the path of project is pointing towords the correct virtual environment otherwise set it in setting.json
+
+
+15.Go to files/preference/settings. settings tab will open change the ui to json in commonly used section
+   check the option split in the bellow other section.
+
+16.NOTE : in the user section python.pythonPath always pointing towards base interpreter and in workspace
+   python.pythonPath always pointing towards vertual environment.
+
+17.If we open the above telusko project in the vs code we need specify the virtual inverinment as bellow
+  --> workon test 
+      (NOTE: test is the identical name for the particular project. Every project has it's own
+      virtual environment. We can't work on projrct with other project's virtual environment. Here test is
+      venv for telusko)
+
+
+18.Test the server by running following code.
+   -->python manage.py runserver
+
+19.If you want to access theis project from the computer which is in same network ru the following command
+-->
+python manage.py 0.0.0.0:8000 (NOTE: we can use 0:8000 in the newer versions to run the local server)
+
+type the url localhost:8000 in the google chrome and check the page wether it is working or not.
+
+
+20.Open project dirctory and create the following app.
+-->
+python manage.py startapp blog (NOTE: blog is the app name here)
+
+
+21.Comand for come out of virtualenv
+-->deactive

@@ -1,0 +1,5 @@
+1.Open music/urls and add app_name = 'music'
+2.Open Details.html replace details with 'music:details'
+3.Open views.py 
+  from django.shortcuts import render,get_object_or_404
+  album = get_object_or_404(Album,pk=album_id)

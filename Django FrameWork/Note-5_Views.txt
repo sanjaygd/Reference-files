@@ -1,0 +1,32 @@
+Whenever user request something in your website it will go to the project directory(website in 
+this example) and will go to the url.py and in the url mapping it will search the user request
+eg.if anyone search http://127.0.0.1:8000/music/ django will search "music/" in bellow url pattern.
+
+from django.conf.url import url
+from django.contrib import admin
+
+urlpatterns = [
+	url(r'^admin/', admin.site.url),
+]
+
+
+1.Create url.py in music directory
+2.copy "from django.conf.urls import url" from website/urls.py and paste it in music/urls.py
+3. Add from . import views
+4.urlpatterns = [
+	url(r'^$', view.index, name='index'),
+]
+
+5.Open website/urls.py and add include in bellow code
+  from django.conf.url import include, url
+
+  urlpatterns = [
+	url(r'^admin/', admin.site.url),
+	url(r'^music/', include('music.urls')),(this is to know website there is music section)
+  ]
+
+6.Open views.py 
+  add 
+  from django.http import HttpResponse
+  def index(request):
+	return Httpresponse(<h1> This is the music app homepage </h1>)

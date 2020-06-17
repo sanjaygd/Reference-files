@@ -1,0 +1,13 @@
+
+*** Working with processes ***
+An instance of the program is called as processe.
+There can be multiple processes.
+
+1. top  -list the processes.
+2. To run the program instance ref. example- firefox+enter 
+3. To send program instance background - bg firefox
+4. To send program instance forground - fg firfox
+4. pidof firefox  -To check process id.
+5. kill 6346  -To kill process instance.
+
+

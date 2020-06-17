@@ -1,0 +1,8 @@
+ref :
+https://www.youtube.com/watch?v=Gta9zVjYCKI&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=37
+
+🍉️1.creating views.
+  --> create view dep_view as select sl_no,names,age from employee;
+
+
+what is libraries and what is madule.

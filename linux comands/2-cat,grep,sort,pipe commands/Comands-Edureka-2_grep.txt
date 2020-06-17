@@ -1,0 +1,15 @@
+
+***Working with files : grep command***
+
+We use the grep command to search for particular string/word in a text file. This is similar to crtl+F but excecute via CLI.
+
+1.grep [option] file.txt - returns the results for matching string.
+
+2.grep -i option file.txt - returns the result for case insensitive strings.
+
+3.grep -n option file.txt - returns the matching string along with their line number.
+
+4.grep -v option file.txt - returns results of lines which are not matching the search string.
+
+5.grep -c option file.txt - returns the number of lines in which the result match search strinng.
+

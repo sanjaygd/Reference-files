@@ -1,0 +1,3 @@
+1.Open the comand prompt.
+2.Open the app directory.
+3.python manage.py migrate(it will sink up the codes with the database)

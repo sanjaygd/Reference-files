@@ -1,0 +1,5 @@
+ref :
+https://www.youtube.com/watch?v=DR0CQs2ZqR0&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=32
+
+🍉️1.create a two table. one name it as employee and another name it as department and perform cross join.
+  --> select sl_no, age,company from employee cross join department;

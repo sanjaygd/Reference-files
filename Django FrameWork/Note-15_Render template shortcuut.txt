@@ -1,0 +1,5 @@
+1.Open views.py
+2.Remove from django.template import loader and add "from django.shortcuts import render"
+3.make following changes in index function
+  remove "template = loader.get_templet('music/index.html')"
+  change return render(request,'music/index.html',)

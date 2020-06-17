@@ -1,0 +1,8 @@
+ref :
+https://www.youtube.com/watch?v=WYuylgAr-ik&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=34
+
+🍉️1.using left and right outer join.
+  --> select sl_no,names,age,company,dep_id,name from employee left outer join department on employee.sl_no=department.dep_id;
+  --> select sl_no,names,age,company,dep_id,name from employee right outer join department on employee.sl_no=department.dep_id;
+  --> select sl_no,names,age,company,dep_id,name from employee full outer join department on employee.sl_no=department.dep_id;
+

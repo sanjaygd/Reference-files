@@ -1,0 +1,70 @@
+***Basic commands***
+
+1. pwd - present working directory.
+
+2. / - root directory.
+
+3. Crtl+l - clear screan (shortcut for the clear command).
+
+4. clear - this comand is used to clear the terminal screen.
+
+5. echo - comand that writes it's arguement to standerd output.(ex. echo hello world, x=100 enter echo $x)
+
+6. su - used to switch to root user(so that super user permission can be used to execute the command).
+   (NOTE: when we switched to root user command line initiater ends with '#' for normal user it won't apear)
+
+7.su username - used to switch to a different user
+
+8.sudo - executes that command with root/super user previlage
+
+
+
+
+***Working with the directories***
+
+$ ls [option] [file] [Directory]
+
+
+
+1. ls path - By specifying the path after ls, the content in the path displayed.
+   (ex. ls sanjay/dir )
+
+2. ls -l - using "l" flag. list all the content allong with its owner settings, permission and time stamps
+
+
+3. ls -a -  using "a" flag, list all the hidden content in the specified directory.
+
+
+4. ls -author - using this flag,list the content in the specified directory along with owner
+
+5. ls -S - sort and list all the content in specified directory by size.
+
+6. ls *.html - list only the content in the directory of particular format
+
+7. ls -lS > file.txt - copy the result of ls comand to text file.
+
+8. ls -laS home/sanjay > file.txt copy the result of ls comand to text file.
+
+
+
+
+
+
+***Working with the directories : cd ***
+
+$ cd [directory]
+
+1. cd - Changes the directory to home directory
+
+2. cd ~ - This command also Changes the directory to home directory.
+
+3. cd / - Changes the directory to root directory
+
+4. cd .. - Changes the directory to parent directory
+
+5. cd 'xx yy' - We specified the folder name in invited commas because there is the folder name (eg. cd OneDrive/Attachments/)
+
+
+
+
+

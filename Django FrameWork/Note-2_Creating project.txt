@@ -1,0 +1,14 @@
+Tehere are two methods to create project.
+method 1 using comand prompt and method 2 is using pycharm.
+1.Open the comand propmt
+2.Open the directory to where you need to creat the project ex(H: and press enter, cd .\file name
+and eneter)
+3.django-admin startproject website
+
+2nd method
+1.Open the pycharm and name the project and directory and create
+
+
+*To runserver -> python manage.py runserver(we can check in browser using http://127.0.0.1:8000)
+OR open the project direcory in pycharm and click on green arrow mark which is used to excecute
+program.

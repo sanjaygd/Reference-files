@@ -1,0 +1,9 @@
+Refer this site
+https://data-flair.training/blogs/django-caching/
+
+to check whether cache is working or not try below commands if its loading bunch of STATEs  caching is working properly if it is not loading something went wrong with configuration.
+
+1. echo stats | nc 127.0.0.1 11211
+
+To know updates in every two secon try the below code.
+2. watch "echo stats | nc 127.0.0.1 11211"

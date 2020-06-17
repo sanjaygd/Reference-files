@@ -1,0 +1,40 @@
+🍉️1.To install postgress run the below comand.
+   --> sudo apt-get install postgresql postgresql-contrib
+
+🍉️2.To check postgres installed or not 
+   --> ls etc/postgresql/11/main/   (11 is version number)
+
+🍉️3.To check postgres running properly.
+   --> service postgresql   (☘️It will show like this:Usage: /etc/init.d/postgresql {start|stop|restart|reload|force-reload|status} [version ..])
+
+🍉️4.To know the status run the following comand.
+   --> srvice postgresql status
+
+🍉️5.To change the system previlage of sudo user to postgres account user.
+   --> sudo su postgres
+
+🍉️6.To enter postgres shell
+   --> psql
+
+🍉️7.To list the database.
+   --> \l
+
+🍉️8.To know the users.
+  -->\du
+
+🍉️9.To change the user password run the following comand.
+   --> ALTER USER postgres WITH PASSWORD 'test1234'; (☘️It shows : ALTER ROLE)
+
+🍉️9.To create the new user.
+   --> CREATE USER user_2 WITH PASSWORD 'test1234';  (☘️It shows : CREATE ROLE)
+
+🍉️11.To alter the previlage.
+   --> ALTER USER user_2 WITH CREATEROLE;  (☘️ It shows : ALTER ROLE)
+
+🍉️12.Deleting the User.
+   --> DROP USER user_2;  (☘️ It shows : DROP ROLE)
+
+🍉️13.To Open postgres documentation for help.
+   --> man psql
+
+

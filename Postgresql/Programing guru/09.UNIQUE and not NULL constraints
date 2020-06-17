@@ -1,0 +1,22 @@
+ref :
+https://www.youtube.com/watch?v=e_QX4OUKI2c&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=12,
+
+🍉️1.Create a below table with NOT NULL constraint.
+  --> create table material(
+	material_no integer NOT NULL,
+	name text NOT NULL,
+	Price numeric NOT NULL);
+
+🍉️2. Check the constraint with following query.
+  --> insert into material values(1, 'head phone', 1500);
+
+
+🍉️3.Create the following table with unique constraint.
+  --> create table material(
+	product_no integer UNIQUE,
+	product_name text UNIQUE,
+	price integer CHECK(price>0)
+	);
+
+🍉️4.Check the constraint with following query with duplicate id 1 already exist.
+  --> insert into tests values(1, 'bottle', 2300);

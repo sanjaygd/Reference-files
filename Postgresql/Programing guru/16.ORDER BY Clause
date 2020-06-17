@@ -1,0 +1,8 @@
+ref :
+https://www.youtube.com/watch?v=VivI5vDu2Ro&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=19
+
+🍉️1.ordering the values in assending order or decsending order. (nOTE : BY DEFAULT IT IS IN ASCENDING ORDER)
+  --> select * from company order by salary DESC; (note : this is to ordering in descending order)
+
+🍉️2.If same values are clashing we can use following query to solve.
+  -->

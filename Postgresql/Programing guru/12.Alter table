@@ -1,0 +1,15 @@
+ref :
+https://www.youtube.com/watch?v=sK8INfuDjFQ&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=15
+
+🍉️1.We can alter the table using using following comand.
+  --> ALTER TABLE COMPANY ADD  gender char(1);
+
+🍉️2.Droping the column.
+  --> alter table company DROP column gender;
+
+🍉️3.Adding the constraints.
+  -->alter table company ADD CONSTRAINT  pri PRIMARY KEY(id);
+
+
+🍉️4.deleting the constraint.
+  --> ALOTER TABLE COMPANY DROP CONSTRAINT pri;

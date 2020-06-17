@@ -1,0 +1,13 @@
+1.If we added something to the file and we need to check what added we can ensure by following comands
+	git diff
+  if we want see changes in specific file we can use:
+	git diff index.txt (index.txt is a file file name)
+
+2.If the file is already staged we can use the following comand to see the changes.
+	git diff --staged index.txt
+
+3.If we want to remove the recent changes that we made with the file, we need to unstage first(not required if it is not staged, we can directly checkout)
+	git reset index.txt
+
+4.Remove the recent changes by running the following command.
+	git checkout index.txt

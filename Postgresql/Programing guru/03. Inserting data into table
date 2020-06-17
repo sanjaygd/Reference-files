@@ -1,0 +1,15 @@
+ref:
+https://www.youtube.com/watch?v=Ytb3BREgWGE&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=5
+
+🍉️1.Inserting the data into table.
+  --> insert into company(id,name,age,address,salary)values(1,'Sanjay',26,'Bangalore',60000);
+      (Note : If values are in the order we can us below query)
+  --> insert into company values(2,'Varun',25,'Mumbai',45000);
+
+	AND we can use below comand also when table atributes changed their position.
+  --> insert into company(name,id,age,address,salary)values('Jhone',7,31,'Bangalore',60000),('Vicky',8,30,'Bangalore',80000);
+
+
+🍉️2. usage of "select" while doing query.
+  --> select * from company;
+      select id,name,salary from company;

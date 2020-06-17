@@ -1,0 +1,13 @@
+1.Open comand prompt
+2.python manage.py shell
+3.from music.models import Album,song
+4.To see all of the item in the table -->Album.objects.all()
+5.a = Album(artist="Taylor Swift", album_title="Red", genre="Country". album_logo="https://thenewbost...")
+6.a.save()
+7.To check object-->a.artist, a.id, a.album_title
+8.b=Album()
+9.b.artist="Myth"
+  b.album_title="High School"
+  b.genre="Punk"
+  b.album_logo="https://thenewboston...."
+10.b.save()

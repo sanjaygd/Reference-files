@@ -1,0 +1,38 @@
+1.Remove all the codes in view.py
+2.Create class type view add bellow code
+
+from django.views import generic
+from .models import Album
+
+class IndexView(generic.ListView):
+    template_name = 'music/index.html'
+
+    def get_queryset(self):
+        return Album.objects.all()
+
+
+class DetailView(generic.DetailView):
+    model = Album
+    template_name = 'music/details.html'
+
+
+3.Change the url pattern as bellow(replaceses album_id with pk)
+url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='details'),   ---> as_view tells take this class as function
+
+4.Change index.html as bellow(all_albums replaced by object_list)
+
+{% extends 'music/base.html' %}
+
+{% block body %}
+
+
+    <ul>
+        {% for album in object_list %}
+        <li> <a href="{% url 'music:details' album.id %}">{{ album.album_title }}</a></li>
+        {% endfor %}
+    </ul>
+
+
+{% endblock body %}
+
+

@@ -1,0 +1,9 @@
+ref :
+https://www.youtube.com/watch?v=8dB_lwE7VVs&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=18&pbjreload=10
+
+🍉️1.grouping with respect to table atrribute.
+  --> select location,count(*) from company group by location;
+
+🍉️2.
+using having clause 
+  --> select location,count(*) from company group by location having MAX(salary)>1000;

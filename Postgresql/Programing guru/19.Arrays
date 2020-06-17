@@ -1,0 +1,21 @@
+ref :
+https://www.youtube.com/watch?v=c8dXZuGa5wI&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=24
+
+🍉️1.Creating table with arrays.
+  --> create table sal_emp(
+	name text,
+	pay integer[],
+	schedule text [][]);
+
+🍉️2.inserting the values into table.
+  --> insert into sal_emp values('sanjay', '{10,20,30,40}', '{{"meeting","lunch"},{"joging","sleeping"}}')
+
+🍉️3.retrieving the values.
+  --> select * from sal_emp
+  --> select pay[2] from sal_emp
+
+🍉️4.querying in different way.
+  --> select name from sal_emp where pay[1]<>pay[2];
+  --> select name from sal_emp where pay[1]=pay[2];
+  --> select array_dims(schedule) from sal_emp where name='sanjay';
+

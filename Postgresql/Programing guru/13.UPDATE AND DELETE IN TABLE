@@ -1,0 +1,8 @@
+ref :
+https://www.youtube.com/watch?v=wOY-KGOAfME&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=16&pbjreload=10
+
+🍉️1.update the table row.
+  --> update company set location='banglore' where id=3;
+
+🍉️2.deleting the table row.
+  -->delete from company where id=4;

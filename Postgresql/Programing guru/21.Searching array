@@ -1,0 +1,9 @@
+ref :
+https://www.youtube.com/watch?v=l005VTJqzcc&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=27&t=0s
+
+🍉️1.searching the in array.
+  --> select * from sal_emp where pay[1]=1000 or pay[2]=30000;
+
+🍉️2.Other query.
+  --> select * from sal_emp where 12000=ANY(pay);
+  --> select * from sal_emp where 1000=ALL(pay);

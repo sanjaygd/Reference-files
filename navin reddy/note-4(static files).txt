@@ -1,0 +1,13 @@
+1.Download required template 
+2.Create directory called static in your project folder.
+3.Copy all static files from downloaded template file to static directoty inside the project file.
+4.Copy and paste index.html to the template folder.
+5.Open settings.py ensure 'django.contrib.staticfiles', present in installed app and add following codes at
+  the bottom 
+  STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+6.Open index.html add {% load staticfiles%} and apply ststic tag wherever it is required.

@@ -1,0 +1,20 @@
+1.Open models.py
+2.Add string representation of song as follow
+      def __str__(self):
+        return self.song_title
+3.Open admin.py and add
+  admin.site.register(song)
+4.Open comand prompt
+  from music.models import Album,song
+  album1 = Album.objects.get(pk=1)
+  album1.artist(just to check)
+  song = song()
+  song.album = album1
+  song.file_type = mp3
+  song.song_title ='I love my boy friend'
+  song.save()
+another method 
+  album1.song_set.all()
+  album1.song_set.create(sonf_title='I love becon', file_type='mp3')
+  album1.song_set.create(sonf_title='Bucky is lucky', file_type='mp3')
+  album1.song_set.create(sonf_title='Ice Cream', file_type='mp3')

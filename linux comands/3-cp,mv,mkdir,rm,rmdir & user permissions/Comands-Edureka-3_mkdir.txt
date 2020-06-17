@@ -1,0 +1,15 @@
+***Working with files : mkdir command***
+
+1.mkdir  -This command is used to create a new directory.
+
+2.mkdir -p  -Creates both a new parent directory and the sub-directory. (mkdir -p folder1/folder2/folder3/)
+
+3.mkdir --parents  -This is also used for the same process
+
+4.mkdir -p file1/{f2,f3,f4}   (eg.1 : mkdir {f1,f2,f3} , eg.2 : mkdir -p expy/{v1,v2,v3})
+
+
+
+
+
+

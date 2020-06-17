@@ -1,0 +1,4 @@
+1.Open the comand prompt
+2.To check the current version of python -> python --version
+3.To install Django -> easy_install django
+4.To check the version of the django -> django-admin --version

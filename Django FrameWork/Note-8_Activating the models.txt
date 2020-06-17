@@ -1,0 +1,11 @@
+1.Open settings.py
+2.Go to installed apps and add bellow line
+'music.apps.MusicConfig' (This refers to music app we can check the class status in apps.py this will make sure that 
+all the apps are working with database correctly)
+
+*Whenever we start the server it will go to the installed apps and it will check for the models for the same and matching
+and match the database.
+
+3.python manage.py makemigration music
+4.to check the migration -->python manage.py sqlmigrate music 0001
+5.To apply migration -->python manage.py migrate

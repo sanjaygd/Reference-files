@@ -1,0 +1,25 @@
+1.Open new directory as follows : music/static/music/images
+2.Open the above directory and copy the image that we need to keep it as background.
+3.create style.css in music/static/music
+4.open style.css and add following code 
+
+body {
+	background : white url("images?backgound.jpg");
+}
+
+5.Open index.html and add following code.
+
+{% load staticfiles %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+
+        <div class="navbar-header">
+            <a href="{% url 'music:index' %}">Viberr</a>
+        </div>
+
+    </div>
+</nav>

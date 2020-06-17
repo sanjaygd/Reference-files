@@ -1,0 +1,25 @@
+ref :
+https://www.youtube.com/watch?v=_0CgExUEL7Q&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=10
+
+🍉️1. We can comment two ways one is using -- and another is /* shown below
+  --> --select name from company;
+
+      /* I have writen
+       something in these
+      three lines */
+
+
+🍉️2. Expressions : as,
+  --> select name as employe_name from company; 	(Note : as)
+
+  --> select count(*) from company;			(note : count(*) -- to count all number of row)
+
+  --> select max(age) from company;			(Note : max(age) -- to know max value of the particular column)
+
+  --> select sum(salary) from company;			(Note : sum)
+
+  --> select avg(salary) from company;			(Note : avg)
+
+  --> select current_timestamp;				(Note : current_timestamp)
+ 
+  --> select current_timestamp from company where age=26; (Note : custom timestamp)

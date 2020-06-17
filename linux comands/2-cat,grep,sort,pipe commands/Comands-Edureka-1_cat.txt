@@ -1,0 +1,19 @@
+***Working with files : cat command***
+
+$ cat [options] file1 file2
+
+
+1. cat - command used to display the content of the text files and concatinate several files into one.
+
+2.cat -b -Used to add line numbers to non blank lines.
+
+3.cat -n -Used to add line numbers to all lines.
+
+4.cat -s -used to squeeze blank lines into single line.
+
+5.cat -E -Show $ at the end of line
+
+6.cat > file.txt -used to add new file (we can create .html .py etc...)
+
+7.cat >> file.txt -used to append text content to existing file from the terminal.
+

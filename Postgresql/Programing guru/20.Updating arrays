@@ -1,0 +1,21 @@
+ref :
+https://www.youtube.com/watch?v=9KgAArJuSDM&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=25
+
+🍉️1. updating the arrays.
+  --> update sal_emp set pay='{25000,25000,25000,25000}' where name='sanjay';
+
+🍉️2.Updating the individual value.
+  --> update sal_emp set pay[2]=30000 where name='sanjay';
+
+🍉️3.slicing update.
+  --> update sal_emp set pay[1:2]='{20000,30000}' where name='vikas';
+
+🍉️4.Appending array in every row.
+  --> update sal_emp set pay=array_append(pay,55000);
+
+
+🍉️5.Concatinating the multiple values into array.
+  --> update sal_emp set pay=array_cat(pay,ARRAY[11000,12000]);
+
+🍉️6.removing the array elements.
+  --> update sal_emp set pay=array_remove(pay,25000);

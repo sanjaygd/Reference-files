@@ -1,0 +1,9 @@
+ref :
+https://www.youtube.com/watch?v=OthRgI8lUSU&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=29
+
+🍉️1.aggregate functions
+  --> select count(*) from employee
+  --> select max(age) from employee
+  --> select min(age) from employee
+  --> select avg(age) from employee
+  --> select sum(age) from employee 

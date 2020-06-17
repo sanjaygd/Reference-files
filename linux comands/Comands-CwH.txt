@@ -1,0 +1,62 @@
+1. / is the root directory
+
+2. pwd -print working directory, using to know current directory.
+
+3. ls- use to know child directories.
+
+4. cd- use to select perticular directory
+
+5. press tab to auto complete
+
+6. mkdir newfolder- to create new directory.
+
+7. cd .. -To come one step back frome the directory.
+
+8. touch newfile.txt - to craete new text file.
+
+9. mv newfile.txt newfolder/ - to move file to another folder.
+
+10. cp 2.txt this/ - to copy file to athore folder.
+
+11. cp /home/sanjay/Downloads/sanjay/56.txt /home/sanjay/  to copy file from one folder to another folder
+
+
+12. Users
+    a.Regular user
+    b.Root user (uses 'sude' at the start af the comand)
+    c.Super user (uses the 'sudo su' at the start of the comand)
+
+
+13. Type of path
+    a.Absolute path (the one which uses to go out of the branch)
+    b.Relative path (the one which uses the inner branch)
+
+
+14. sudo apt-get update - To download the os 
+
+
+15. sudo apt-get upgrade - To install updated files
+
+
+16. ls -R - showes the directory and the files inside the directory.
+
+17. touch .Newfile - to create new hidden file.
+
+18. ls -a - to display hidden file.
+
+19. clear - to clear the terminal.
+
+20. history - to show the previously used comands.
+
+21. echo - to print something.
+
+22. sudo apt install apache2 - to intall any app(here apache2 is server app)
+
+23. top - showes the program which uses most resources
+
+24. ps - process which is runs currently.
+
+25.ps -a - all the apps which runs.
+
+
+

@@ -1,0 +1,14 @@
+***Working with files : mv command***
+
+1.mv -This command used to move files and directories.
+
+2.mv -i  -Enters the interactive mode, CLI asks before overwriting the files.
+
+3.mv -u  -Updates the destination file only when source file is different from destination file.
+
+4.mv -v Verbous, Prints source and destination file.
+
+
+
+
+

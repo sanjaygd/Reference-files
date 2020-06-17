@@ -1,0 +1,29 @@
+ref :
+https://www.youtube.com/watch?v=Kz9HsTUOlY8&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=13
+
+🍉️1.create a product table as below.
+  --> create table products(
+	product_id integer PRIMARY KEY,
+	name text,
+	);
+
+🍉️2.Create order table with foriegn key to product table.
+  --> create table orders(
+	ordere_id integer PRIMARY KEY,
+	product_no integer REFERENCES products(product_no),
+	);
+
+🍉️3.delete and create orders table as below to add feature of multiple order.
+  --> create table orders(
+	order_id integer PRIMARY KEY,
+	quantity integer);
+
+
+🍉️4.create order items table as below.
+  --> create table orders_items(
+	product_id integer REFERENCES products(product_id),
+	order_id integer REFERENCES orders(order_id),
+	PRIMARY KEY(product_id,order_id));
+
+
+

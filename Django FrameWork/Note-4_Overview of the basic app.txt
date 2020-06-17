@@ -1,0 +1,9 @@
+1.migration : we can connect website and all our source code with database.
+2.__init__.py : package for the python.
+3.admin.py : The section where we can delet users, delet post and having control over website.
+4.app.py : To make the setting for website.
+5.models.py : models are blue prints for website we can decide how we are storing our data in 
+database of our website in this section eg. creating tables for music.
+6.test.py : Using to test bugs in our website.
+7.views.py : views are functions what they do is take the request from users and give them back
+something.(90% of time users request the website)

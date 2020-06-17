@@ -1,0 +1,20 @@
+***Working with files : rm & rmdir command***
+
+1.rmdir  -This command is used to remove the specified directory(Empty)
+
+2.rmdir -p  -removes both parent and child directory. (rmdir -p testfolder/f1/f2/f3 )
+
+3.rmdir -pv  -removes all the parent and subdirectories along with the verbose.
+
+4.rm -r  -removes even non empty directories.
+
+5.rm -rp  -removes non empty directories including parent and subdirectories.
+
+
+
+
+
+
+
+
+

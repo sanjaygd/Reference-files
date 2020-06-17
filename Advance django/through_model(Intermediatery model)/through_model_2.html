@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)https://www.revsys.com/tidbits/tips-using-djangos-manytomanyfield/ -->
+<html class="no-js" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tips for Using Django's ManyToManyField</title>
+  <meta name="google-site-verification" content="9Gxm1mE9DlsjjGW-e_ThwtIpe2Z67bV3S9FQgFzndwY">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.revsys.com/static/icons/apple-touch-icon.10b562419492.png">
+  <link rel="icon" type="image/png" href="https://www.revsys.com/static/icons/favicon-32x32.52cdfb81a952.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://www.revsys.com/static/icons/favicon-16x16.d75462ec0fe9.png" sizes="16x16">
+  <link rel="manifest" href="https://www.revsys.com/static/icons/manifest.280524f104dd.json">
+  <link rel="mask-icon" href="https://www.revsys.com/static/icons/safari-pinned-tab.c6ddd5def733.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://www.revsys.com/static/icons/favicon.ce76a067cca9.ico">
+
+
+  <!-- Custom CSS using -->
+  <link href="./through_model_2_files/main.min.css" rel="stylesheet" property="stylesheet">
+  <link href="./through_model_2_files/font-awesome.min.css" rel="stylesheet">
+
+  <meta name="application-name" content="REVSYS">
+  <meta name="msapplication-tooltip" content="REVSYS">
+  <meta name="apple-mobile-web-app-title" content="REVSYS">
+
+  <meta property="og:site_name" content="REVSYS">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="//www.revsys.com/static/icons/apple-touch-icon.10b562419492.png">
+
+  <meta name="twitter:site" :="" content"@revsys"="">
+  <meta name="twitter:creator" content="@revsys">
+
+  
+  <meta property="og:title" content="Tips for Using Django&#39;s ManyToManyField">
+  <meta name="twitter:title" content="Tips for Using Django&#39;s ManyToManyField">
+  
+
+  
+  
+    <meta name="description" content="ManyToManyFields confuse a lot of people. The way you relate objects to each other is just different enough from dealing with ForeignKeys and just uncommon enough in day-to-day Django development that it&amp;#x27;s easy to forget all the little tricks for dealing with them.">
+    <meta property="og:description" content="ManyToManyFields confuse a lot of people. The way you relate objects to each other is just different enough from dealing with ForeignKeys and just uncommon enough in day-to-day Django development that it&amp;#x27;s easy to forget all the little tricks for dealing with them.">
+    <meta name="og_description" content="ManyToManyFields confuse a lot of people. The way you relate objects to each other is just different enough from dealing with ForeignKeys and just uncommon enough in day-to-day Django development that it&amp;#x27;s easy to forget all the little tricks for dealing with them.">
+    <meta name="twitter:description" content="ManyToManyFields confuse a lot of people. The way you relate objects to each other is just different enough from dealing with ForeignKeys and just uncommon enough in day-to-day Django development that it&amp;#x27;s easy to forget all the little tricks for dealing with them.">
+  
+
+
+  
+  
+<link rel="alternate" type="application/rss+xml" title="REVSYS Blog RSS Feed" href="https://www.revsys.com/blog/feeds/latest/">
+
+
+  
+
+  <!-- Place favicon.ico in the root directory -->
+</head>
+
+<body class=" blog-article">
+  <header>
+    <div class="container">
+      <div class="flex-grid">
+        <div class="col">
+          <a href="https://www.revsys.com/">
+            <img class="revsys-image" src="./through_model_2_files/revsys_logo_white.png" alt="REVSYS">
+          </a>
+        </div>
+        <div class="col nav-col">
+          <input type="checkbox" id="menu-toggle" class="menu-check">
+          <label for="menu-toggle" class="label-toggle">
+            <span></span>
+          </label>
+          <div class="menu-ov"></div>
+          <ul class="nav">
+            <li><a href="https://www.revsys.com/about/">About</a></li>
+            <li><a href="https://www.revsys.com/impact/">Impact</a></li>
+            <li><a href="https://www.revsys.com/products/">Products</a></li>
+            <li><a href="https://www.revsys.com/tidbits/">Blog</a></li>
+            <li><a href="https://www.revsys.com/contact/">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+    <section class="article-mast">
+      <div class="article-header">
+        <div class="container80">
+          <meta>Tidbits  |  Aug. 31, 2018
+          <h1>
+          Tips for Using Django's ManyToManyField</h1>
+          
+          <author>by Lacey Williams Henschel | &nbsp; <a href="https://www.revsys.com/tidbits/author/lacey-williams-henschel/" style="color: white;">More posts by Lacey</a></author>
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="article-first">
+      <div class="container80">
+        <article itemscope="" itemtype="http://schema.org/Article">
+          <div class="block-markdown"><p>Versions: </p>
+<ul>
+<li>Python 3.7</li>
+<li>Django 2.1</li>
+</ul>
+<p><code>ManyToManyField</code>s confuse a lot of people. The way you relate objects to each other using a many-to-many relationship is just different enough from dealing with <code>ForeignKey</code>s and just uncommon enough in day-to-day Django development that it's easy to forget all the little tricks for dealing with them. </p>
+<p>When should you use a <code>ManyToManyField</code> instead of a regular <code>ForeignKey</code>? To remember that, let's think about pizza. A pizza can have many toppings (a Hawaiian pizza usually has Canadian bacon and pineapple), and a topping can go on many pizzas (Canadian bacon also appears on meat lovers' pizzas). Since a pizza can have more than one topping, and a topping can go on more than one pizza, this is a great place to use a <code>ManyToManyField</code>. </p>
+<p>So let's dive in: assume the following models in a <code>pizzas</code> app. </p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span> 
+
+
+<span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">'Topping'</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="k">class</span> <span class="nc">Topping</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+
+
+<h2>Both objects must exist in the database</h2>
+<p>You have to save a <code>Topping</code> in the database before you can add it to a <code>Pizza</code>, and vice versa. This is because a <code>ManyToManyField</code> creates an invisible "through" model that relates the source model (in this case <code>Pizza</code>, which contains the <code>ManyToManyField</code>) to the target model (<code>Topping</code>). In order to create the connection between a pizza and a topping, they both have to be added to this invisible "through" table. From the Django <a href="https://docs.djangoproject.com/en/2.1/ref/models/fields/#django.db.models.ManyToManyField.through">docs</a>: </p>
+<p>" [T]here is … an implicit through model class you can use to directly access the table created to hold the association. It has three fields to link the models. If the source and target models differ, the following fields are generated:</p>
+<ul>
+<li><code>id</code>: the primary key of the relation.</li>
+<li><code>&lt;containing_model&gt;_id</code>: the id of the model that declares the ManyToManyField.</li>
+<li><code>&lt;other_model&gt;_id</code>: the id of the model that the ManyToManyField points to."</li>
+</ul>
+<p>The invisible "through" model that Django uses to make many-to-many relationships work requires the primary keys for the source model and the target model. A primary key doesn't exist until a model instance is saved, so that's why both instances have to exist before they can be related. (You can't add spinach to your pizza if you haven't bought spinach yet, and you can't add spinach to your pizza if you haven't even started rolling out the crust yet either.) </p>
+<p>See what happens when you try to add a topping to a pizza before you've added that topping to the database: </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; from pizzas.models import Pizza, Topping
+&gt;&gt; <span class="nv">hawaiian_pizza</span> <span class="o">=</span> Pizza.objects.create<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">'Hawaiian'</span><span class="o">)</span>
+&gt;&gt; <span class="nv">pineapple</span> <span class="o">=</span> Topping<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">'pineapple'</span><span class="o">)</span>
+&gt;&gt; hawaiian_pizza.toppings.add<span class="o">(</span>pineapple<span class="o">)</span>
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+...
+ValueError: Cannot add <span class="s2">"&lt;Topping: pineapple&gt;"</span>: instance is on database <span class="s2">"default"</span>, 
+value is on database <span class="s2">"None"</span>
+&gt;&gt; 
+</pre></div>
+
+
+<p>A <code>ValueError</code> is raised because the <code>pineapple</code> hasn't yet been saved, so its value on the database doesn't exist yet. But when I save <code>pineapple</code>, I can add it to my pizza. </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; pineapple.save<span class="o">()</span> 
+&gt;&gt; hawaiian_pizza.toppings.add<span class="o">(</span>pineapple<span class="o">)</span>
+&gt;&gt; hawaiian_pizza.toppings.all<span class="o">()</span>
+&lt;QuerySet <span class="o">[</span>&lt;Topping: pineapple&gt;<span class="o">]</span>&gt;
+</pre></div>
+
+
+<p>The reverse doesn't work either: I can't create a topping in the database, and then add it to a pizza that hasn't been saved. </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; <span class="nv">pepperoni</span> <span class="o">=</span> Topping.objects.create<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">'pepperoni'</span><span class="o">)</span>
+&gt;&gt; <span class="nv">pepperoni_pizza</span> <span class="o">=</span> Pizza<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">'Pepperoni'</span><span class="o">)</span>
+&gt;&gt; pepperoni_pizza.toppings.add<span class="o">(</span>pepperoni<span class="o">)</span>
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+...
+ValueError: <span class="s2">"&lt;Pizza: Pepperoni&gt;"</span> needs to have a value <span class="k">for</span> field <span class="s2">"id"</span> before this many-to-many 
+relationship can be used.
+</pre></div>
+
+
+<p>This error is more explicit (it states that an id is required) but it's essentially the same error. It's just coming from the other side of the relationship. </p>
+<h2>To retrieve the stuff in a <code>ManyToManyField</code>, you have to use <code>*_set</code> ...</h2>
+<p>Since the field <code>toppings</code> is already on the <code>Pizza</code> model, getting all the toppings on a specific pizza is pretty straightforward. </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; hawaiian_pizza.toppings.all<span class="o">()</span>
+&lt;QuerySet <span class="o">[</span>&lt;Topping: pineapple&gt;, &lt;Topping: Canadian bacon&gt;<span class="o">]</span>&gt;
+</pre></div>
+
+
+<p>But if I try to see what pizzas use Canadian bacon, I get an <code>AttributeError</code>: </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; canadian_bacon.pizzas.all<span class="o">()</span>
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+...
+AttributeError: <span class="s1">'Topping'</span> object has no attribute <span class="s1">'pizzas'</span>
+</pre></div>
+
+
+<p>That's because Django automatically refers to the target <code>ManyToManyField</code> objects as "sets." The pizzas that use specific toppings are in their own "set": </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; canadian_bacon.pizza_set.all<span class="o">()</span>
+&lt;QuerySet <span class="o">[</span>&lt;Pizza: Hawaiian&gt;<span class="o">]</span>&gt;
+</pre></div>
+
+
+<h2>… unless you add the <code>related_name</code> option to the field</h2>
+<p>Adding the <code>related_name</code> option to a <code>ManyToManyField</code> will let you choose a more intuitive name to use when you want to retrieve the stuff in that field.  </p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">'Topping'</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">'pizzas'</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The <code>related_name</code> should usually be the lowercase, plural form of your model name. This is confusing for some people because shouldn't the <code>related_name</code> for <code>toppings</code> just be… toppings? </p>
+<p>No; the <code>related_name</code> isn't referring to how you want to retrieve the stuff <em>in this field</em>; it specifies the term you want to use instead of <code>*_set</code> when you're on the target object (which in this case is a topping) and want to see which source objects point to that target (what pizzas use a specific topping). </p>
+<p>Without a <code>related_name</code>, we would retrieve all the pizzas that use a specific topping with <code>pizza_set</code>: </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; canadian_bacon.pizza_set.all<span class="o">()</span>
+&lt;QuerySet <span class="o">[</span>&lt;Pizza: Hawaiian&gt;<span class="o">]</span>&gt;
+</pre></div>
+
+
+<p>Adding a <code>related_name</code> of "pizzas" to the <code>toppings</code> attribute lets us retrieve all the toppings for a pizza like this:</p>
+<div class="codehilite"><pre><span></span>&gt;&gt; canadian_bacon.pizzas.all<span class="o">()</span>
+&lt;QuerySet <span class="o">[</span>&lt;Pizza: Hawaiian&gt;<span class="o">]</span>&gt;
+</pre></div>
+
+
+<h2>You can add things from both sides of the relationship.</h2>
+<p>Earlier, we created a <code>Pizza</code> object, and then a <code>Topping</code> object, and then ran <code>hawaiian_pizza.toppings.add(pineapple)</code> to associate the pineapple topping with the Hawaiian pizza. </p>
+<p>But we could, instead, add a pizza to a topping. </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; <span class="nv">cheese_pizza</span> <span class="o">=</span> Pizza.objects.create<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">'Cheese'</span><span class="o">)</span>
+&gt;&gt; <span class="nv">mozzarella</span> <span class="o">=</span> Topping.objects.create<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">'mozzarella'</span><span class="o">)</span>
+&gt;&gt; mozzarella.pizzas.add<span class="o">(</span>cheese_pizza<span class="o">)</span>
+&gt;&gt; mozzarella.pizzas.all<span class="o">()</span>
+&lt;QuerySet <span class="o">[</span>&lt;Pizza: Cheese&gt;<span class="o">]</span>&gt;
+</pre></div>
+
+
+<h2>You can query the items in the many-to-many set from both sides</h2>
+<p>Say we want to find all the pizzas that have toppings that start with the letter "p." We can write that query like this: </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; Pizza.objects.filter<span class="o">(</span><span class="nv">toppings__name__startswith</span><span class="o">=</span><span class="s1">'p'</span><span class="o">)</span>
+&lt;QuerySet <span class="o">[</span>&lt;Pizza: Pepperoni Pizza&gt;, &lt;Pizza: Hawaiian Pizza&gt;<span class="o">]</span>&gt;
+</pre></div>
+
+
+<p>A Hawaiian pizza contains pineapple, and a pepperoni pizza contains pepperonis. Pineapple and pepperoni both start with the letter "p," so the both of those pizzas are returned. </p>
+<p>We can do the same from the <code>Topping</code> model, to find all the toppings used on pizzas that contain "Hawaiian" in their name: </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; Topping.objects.filter<span class="o">(</span><span class="nv">pizzas__name__contains</span><span class="o">=</span><span class="s1">'Hawaiian'</span><span class="o">)</span>
+&lt;QuerySet <span class="o">[</span>&lt;Topping: pineapple&gt;, &lt;Topping: Canadian bacon&gt;<span class="o">]</span>&gt;
+</pre></div>
+
+
+<h2>You might need a custom "through" model</h2>
+<p>Remember when I mentioned the invisible "through" model that Django creates to manage your many-to-many relationships? You might want to keep track of more data about those relationships, and to do that you would use a custom "through" model.  </p>
+<p>The example used in the <a href="https://docs.djangoproject.com/en/2.1/ref/models/fields/#django.db.models.ManyToManyField.through_fields">Django docs</a> is of a Group, Person, and Membership relationship. A group can have many people as members, and a person can be part of many groups, so the <code>Group</code> model has a <code>ManyToManyField</code> that points to <code>Person</code>. Then, a <code>Membership</code> model contains <code>ForeignKey</code>s to both <code>Person</code> and <code>Group</code>, and can store extra information about a person's membership in a specific group, like the date they joined, who invited them, etc. </p>
+<p>But we're not here to talk about people. We are all about pizza. </p>
+<p>Using our existing models, we can create all kinds of pizzas with a wide range of toppings. But we can't make a pizza like "Super Pepperoni" that contains double the usual amount of pepperonis. We can't add pepperoni to a pizza more than once: </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; pepperoni_pizza.toppings.all<span class="o">()</span>
+&lt;QuerySet <span class="o">[</span>&lt;Topping: pepperoni&gt;<span class="o">]</span>&gt;
+&gt;&gt; pepperoni_pizza.toppings.add<span class="o">(</span>pepperoni<span class="o">)</span>
+&gt;&gt; pepperoni_pizza.toppings.all<span class="o">()</span>
+&lt;QuerySet <span class="o">[</span>&lt;Topping: pepperoni&gt;<span class="o">]</span>&gt;
+</pre></div>
+
+
+<p>Django just ignores us if we try. A "through" model would let us specify a quantity for each topping, enabling us to add "pepperoni" once, but specify that we wanted twice the amount for the Super Pepperoni pizza. </p>
+<p><strong>Note</strong>: If you're going to use a "through" model, you have to start with that in mind… or be willing to either drop your database or do some very advanced database finagling. If you try to add a "through" model later, you will see an error like this one when you run <code>migrate</code>: </p>
+<div class="codehilite"><pre><span></span>ValueError: Cannot alter field pizzas.Pizza.toppings into pizzas.Pizza.toppings - 
+they are not compatible types <span class="o">(</span>you cannot alter to or from M2M fields, or add or remove <span class="nv">through</span><span class="o">=</span> on M2M fields<span class="o">)</span>
+</pre></div>
+
+
+<p>If you're following along, now is the time to drop your database, delete your migration files, and add this new model: </p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">ToppingAmount</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+
+    <span class="n">REGULAR</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">DOUBLE</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">TRIPLE</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">AMOUNT_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">REGULAR</span><span class="p">,</span> <span class="s1">'Regular'</span><span class="p">),</span>
+        <span class="p">(</span><span class="n">DOUBLE</span><span class="p">,</span> <span class="s1">'Double'</span><span class="p">),</span>
+        <span class="p">(</span><span class="n">TRIPLE</span><span class="p">,</span> <span class="s1">'Triple'</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">pizza</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">'Pizza'</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">'topping_amounts'</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">SET_NULL</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">topping</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">'Topping'</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">'topping_amounts'</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">SET_NULL</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">amount</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">AMOUNT_CHOICES</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">REGULAR</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Now, add the <code>through</code> option to the <code>toppings</code> field on the <code>Pizza</code> model: </p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+   <span class="o">...</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">'Topping'</span><span class="p">,</span> <span class="n">through</span><span class="o">=</span><span class="s1">'ToppingAmount'</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">'pizzas'</span><span class="p">)</span>
+</pre></div>
+
+
+<p>And run <code>makemigrations</code> and <code>migrate</code>. </p>
+<p>If we try to add a pizza, a topping, and then associate them the way we used to, we will get an error: </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; <span class="nv">super_pep</span> <span class="o">=</span> Pizza.objects.create<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">'Super Pepperoni'</span><span class="o">)</span>
+&gt;&gt; <span class="nv">pepperoni</span> <span class="o">=</span> Topping.objects.create<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">'pepperoni'</span><span class="o">)</span>
+&gt;&gt; super_pep.toppings.add<span class="o">(</span>pepperoni<span class="o">)</span>
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+...
+AttributeError: Cannot use add<span class="o">()</span> on a ManyToManyField which specifies an intermediary model. 
+Use pizzas.ToppingAmount<span class="err">'</span>s Manager instead.
+</pre></div>
+
+
+<p>Using a custom "through" model forces us to use that model to associate the pizza and toppings. </p>
+<div class="codehilite"><pre><span></span>&gt;&gt;&gt; <span class="nv">super_pep_amount</span> <span class="o">=</span> ToppingAmount.objects.create<span class="o">(</span><span class="nv">pizza</span><span class="o">=</span>super_pep, <span class="nv">topping</span><span class="o">=</span>pepperoni, <span class="nv">amount</span><span class="o">=</span>ToppingAmount.DOUBLE<span class="o">)</span>
+</pre></div>
+
+
+<p>But the benefit is that we can now add some extra information about that relationship, like the fact that the amount of pepperonis on a Super Pepperoni pizza should be double the regular amount. </p>
+<p>We can still access the toppings from the pizza: </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; super_pep.toppings.all<span class="o">()</span>
+&lt;QuerySet <span class="o">[</span>&lt;Topping: pepperoni&gt;<span class="o">]</span>&gt;
+</pre></div>
+
+
+<p>We'll only see pepperoni once, since the amount is on the "through" model. And we can access the pizzas that use a specific topping: </p>
+<div class="codehilite"><pre><span></span>&gt;&gt; pepperoni.pizzas.all<span class="o">()</span>
+&lt;QuerySet <span class="o">[</span>&lt;Pizza: Super Pepperoni&gt;<span class="o">]</span>&gt;
+</pre></div>
+
+
+<p>But now, we can use our "through" model to get all the toppings and their amount for a specific pizza from the <code>ToppingAmount</code> model: </p>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">top_amt</span> <span class="ow">in</span> <span class="n">ToppingAmount</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pizza</span><span class="o">=</span><span class="n">super_pep</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">top_amt</span><span class="o">.</span><span class="n">topping</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">top_amt</span><span class="o">.</span><span class="n">get_amount_display</span><span class="p">())</span>
+
+<span class="n">pepperoni</span> <span class="n">Double</span>
+</pre></div>
+
+
+<p>You can also see the topping amounts from the <code>Pizza</code> objects themselves.</p>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">top_amt</span> <span class="ow">in</span> <span class="n">super_pep</span><span class="o">.</span><span class="n">topping_amounts</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">top_amt</span><span class="o">.</span><span class="n">topping</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">top_amt</span><span class="o">.</span><span class="n">get_amount_display</span><span class="p">())</span> 
+
+<span class="n">pepperoni</span> <span class="n">Double</span>
+</pre></div>
+
+
+<p>And you can also access the amount for a specific topping from the <code>topping</code> on the <code>Pizza</code> object.</p>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">topping</span> <span class="ow">in</span> <span class="n">super_pep</span><span class="o">.</span><span class="n">toppings</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">top_amt</span> <span class="ow">in</span> <span class="n">topping</span><span class="o">.</span><span class="n">topping_amount</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">topping</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">top_amt</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">top_amt</span><span class="o">.</span><span class="n">get_amount_display</span><span class="p">())</span>
+
+<span class="n">pepperoni</span> <span class="mi">2</span> <span class="n">Double</span>
+</pre></div>
+
+
+<p>You could extend this <code>ToppingAmount</code> through model to hold information about the left and right halves of the pizza, or notes about topping preparation ("put peppers under cheese"). You can also add methods to the through model or the source/target models to more easily access some of the topping amount information. </p>
+<p>A through model is also useful for relationships between players and teams; the through model could contain information about the players' positions, jersey numbers, and dates they joined the team. A through model joining movie theatres and films could contain the number of screens the film is showing on and the start and end run dates. Students' relationships to their Degree Programs could track information like GPA, whether the program is the student's major or minor, whether it's a double major, and start/end semesters the student was in a program. </p>
+<hr>
+<h3>Further Reading</h3>
+<ul>
+<li>The <a href="https://docs.djangoproject.com/en/stable/topics/db/examples/many_to_many/">many-to-many relationships</a> section of the Django docs contains a lot of great examples of using <code>ManyToManyField</code>. </li>
+<li>The explanation of <a href="https://docs.djangoproject.com/en/2.1/ref/models/fields/#django.db.models.ManyToManyField"><code>ManyToManyField</code></a> in the model field reference. </li>
+<li>Jacob Kaplan-Moss also has a <a href="https://gist.github.com/jacobian/827937">great set of examples</a> of using a many-to-many relationship with a custom "through" model. </li>
+</ul>
+<p><em>Thank you to <a href="https://twitter.com/mvioletmurphy">Monique Murphy</a> and <a href="https://twitter.com/webology">Jeff Triplett</a> for their assistance.</em></p></div>
+          
+            <hr>
+            <p>
+              
+                <i class="fa fa-tag"></i> <a href="https://www.revsys.com/tidbits/tag/django/">django</a> &nbsp;
+              
+                <i class="fa fa-tag"></i> <a href="https://www.revsys.com/tidbits/tag/manytomanyfield/">manytomanyfield</a> &nbsp;
+              
+                <i class="fa fa-tag"></i> <a href="https://www.revsys.com/tidbits/tag/through-model/">through model</a> &nbsp;
+              
+            </p>
+          
+        </article>
+
+          
+      </div>
+    </section>
+
+    <section class="share-section">
+      <div class="share-box">
+        <ul>
+          <li>
+            <a href="https://twitter.com/home?status=From%20REVSYS:%20Tips%20for%20Using%20Django%27s%20ManyToManyField%20https://www.revsys.com/tidbits/tips-using-djangos-manytomanyfield/">
+              <img src="./through_model_2_files/icon_twitter.png">
+            </a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.revsys.com//tidbits/tips-using-djangos-manytomanyfield/&amp;caption=hello">
+              <img src="./through_model_2_files/icon_fb.png">
+
+            </a>
+          </li>
+          <li>
+            <a href="mailto:?subject=Tips%20for%20Using%20Django%27s%20ManyToManyField&amp;body=From%20REVSYS:%20https://www.revsys.com/tidbits/tips-using-djangos-manytomanyfield/">
+              <img src="./through_model_2_files/icon_email.png">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <p class="hide" itemprop="description">ManyToManyFields confuse a lot of people. The way you relate objects to each other is just different enough from dealing with ForeignKeys and just uncommon enough in day-to-day Django development that it's easy to forget all the little tricks for dealing with them.</p>
+    <span itemprop="dateCreated" class="hide">2018-08-31T15:37:58.114597</span>
+    <span itemprop="datePublished" class="hide">2018-08-31T15:37:58.114597</span>
+    <span itemprop="dateModified" class="hide">2018-08-31T15:37:58.061032</span>
+    <span itemprop="copyrightYear" class="hide">2018</span>
+    <span itemprop="keywords" class="hide">django,manytomanyfield,through model</span>
+    
+
+  <footer>
+    <div class="container80">
+      <div class="together flex-grid">
+        <div class="col footer-image">
+        </div>
+        <div class="desktop-wrap--flex">
+          <div class="col footer-title">
+            <h3>Let’s work together.</h3>
+            <ul>
+              <li><a href="mailto:sales@revsys.com">sales@revsys.com</a></li>
+              <li><a href="https://www.revsys.com/contact/">Contact us</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex-grid desktop-flex-grid">
+        <div class="col footer-col">
+          <ul>
+            <li>
+              <h2>Services</h2>
+            </li>
+            <li><a href="https://www.revsys.com/services/django/">Django</a></li>
+            <li><a href="https://www.revsys.com/services/postgresql/">PostgreSQL</a></li>
+            <li><a href="https://www.revsys.com/services/operations/">Operations</a></li>
+            <li><a href="https://www.revsys.com/services/development/">Development</a></li>
+            <li><a href="https://www.revsys.com/services/support/">Open Source</a></li>
+            <li><a href="https://www.revsys.com/services/sysadmin/">Systems Admin</a></li>
+          </ul>
+        </div>
+        <div class="col footer-col">
+          <ul>
+            <li>
+              <h2>Products</h2>
+            </li>
+            <li><a href="https://www.revsys.com/products/">Spectrum</a></li>
+            <li><a href="https://www.revsys.com/products/">Open Source</a></li>
+          </ul>
+        </div>
+        <div class="col footer-col">
+          <ul>
+            <li>
+              <h2>Blog</h2>
+            </li>
+            <li><a href="https://www.revsys.com/about/press/">News</a></li>
+            <li><a href="https://www.revsys.com/tidbits/">Blog</a></li>
+            <li><a href="https://www.revsys.com/writings/quicktips/">Quick Tips</a></li>
+            <li><a href="https://www.revsys.com/talks/">Talks</a></li>
+            <li><a href="https://www.revsys.com/writings/">Other</a></li>
+          </ul>
+        </div>
+        <div class="col footer-col about-col">
+          <ul>
+            <li>
+              <h2>About</h2>
+            </li>
+            <li><a href="https://www.revsys.com/impact/">Case Studies</a></li>
+            <li><a href="https://www.revsys.com/about/">Team</a></li>
+            <li><a href="https://www.revsys.com/testimonials/">Testimonials</a></li>
+            <li><a href="https://www.revsys.com/clients/">Clients</a></li>
+            <li><a href="https://www.revsys.com/about/press/">Press</a></li>
+            <li><a href="https://www.revsys.com/contact/">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col newsletter-col">
+          <div class="form-wrap">
+            <h2>Get Connected</h2>
+            <div>
+              <p><a href="http://eepurl.com/wBHg1">Signup for our newsletter for tips and tricks.</a></p>
+            </div>
+            <a href="https://www.facebook.com/revsysllc/"><img src="./through_model_2_files/icon_fb.png"></a>
+            <a href="https://twitter.com/revsys"><img src="./through_model_2_files/icon_twitter.png"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>Have a comment or suggestion? <a href="mailto:comments@revsys.com">comments@revsys.com</a></p>
+        <p>©2002–2020 Revolution Systems, LLC. All rights reserved</p>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" async="" src="./through_model_2_files/linkid.js"></script><script async="" src="./through_model_2_files/analytics.js"></script><script>
+    (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-1145759-1', 'auto');
+    ga('require', 'linkid', 'linkid.js');
+    ga('send', 'pageview');
+  </script>
+  
+
+
+
+</body></html>

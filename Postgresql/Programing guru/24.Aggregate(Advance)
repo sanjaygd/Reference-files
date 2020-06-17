@@ -1,0 +1,9 @@
+ref :
+https://www.youtube.com/watch?v=OthRgI8lUSU&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=29
+
+🍉️1.aggregate functions
+  --> select array_agg(name) from employee;
+  --> select json_agg(name) from employee;
+  --> select json_object_agg(name,age) from employee;
+  --> select stddev(age) from employee;
+  --> select mode() within group(order by age) from employee;

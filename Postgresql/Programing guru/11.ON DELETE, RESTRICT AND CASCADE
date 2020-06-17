@@ -1,0 +1,20 @@
+REF :
+https://www.youtube.com/watch?v=EGLekrzgSQs&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=15&t=160s
+
+🍉️1.Delete the table order_item and recreat as follows.
+  --> create table order_items(
+	product_id integer REFERENCES products(product_id) ON DELETE RESTRICT,
+	order_id integer REFERENCES orders(order_id) ON DELETE CASCADE,
+	quantity integer,
+	PRIMARY KEY (product_id, order_id));
+
+
+🍉️2.We can check the relationship by deleting product_id which raise the error because of ON DELETE RISTRICT and by deleting the order_id which makes delete the all arders in order_item.
+
+
+
+
+
+
+
+

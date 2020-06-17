@@ -1,0 +1,34 @@
+ref :
+https://www.youtube.com/watch?v=wnP4hdk4ooE&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=12&t=339s
+
+🍉️1.Create the new table.
+  --> create table products(
+	product_num integer,
+	name text,
+	price numeric CHECK (price>0)
+	);
+
+🍉️2.If we assiign price in negative value like below query data won't create in the table. 
+  --> insert into products values(10, 'soup', -10);
+
+🍉️3.Create another table to know check query featurs.
+  --> create table products(
+	product_no integer,
+	name text,
+	price numeric CHECK(PRICE>0),
+	discounted_price numeric CHECK(discounted_price>0),
+	CHECK(price>discounted_price));
+
+	OR
+
+	create table products(
+	product_no integer,
+	name text,
+	price numeric CHECK(PRICE>0),
+	discounted_price numeric CHECK(discounted_price>0 and price>discounted_price),
+
+
+
+music/media/
+music/static/
+music/user/__pycache__/

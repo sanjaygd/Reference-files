@@ -1,0 +1,8 @@
+ref :
+https://www.youtube.com/watch?v=WIH3Uxe4RpA&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=27
+
+🍉️1.using the functions.
+  --> select cbrt(27);
+  --> select ceil(33.4);
+  --> select floor(33.4);
+and so on...

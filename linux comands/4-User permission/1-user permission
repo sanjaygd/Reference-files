@@ -1,0 +1,17 @@
+
+*** Working with user permission ***
+
+1.chmod  -To change the access permissions of files and directories.
+1.1 chmod  -To gives the write and excecute permission to group members.
+1.2 chmod u=rwx,o-wx filname  -This gives the read,write,excecute permission to owners and removes write and excecute ownership from other members
+
+
+2.chown  -To change the owner of file and directories.
+2.1 chown username filename  -Change the owner of the specified file.
+2.2 chownnusename:groupname filename  -Change the owner and group ownership of the specifed file.
+
+
+3.chgrp  -To change the group ownership of file and directories.
+3.1 chgrp groupname filename  -Change the group ownership of the specified file.
+
+

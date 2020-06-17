@@ -1,0 +1,50 @@
+1.Open the github and signin
+2.Create new repository
+3.Name of the repository always should be seperated by "-"
+4.Open the the created repository and open the code section, select SSH in Quick setup and copy the
+  git comand line down the page (git remote add origin git@github.com:sanjaygd/doc-repo.git)
+5.Open the git comand window and and paste that comand line.
+7.Run the following comand to push the files from that directory 
+  git push -u origin master
+8.Note : if there is no SSH key available in your account it will not push the files you need to generate the key. the bellow steps will 
+  show how to do that.
+9.Go to settings
+10.Click on SSh and GPG key
+11.We can refer the guid to generate SSH key 
+12.Run this comand in git bash to generate key : ssh-keygen -t rsa -b 4096 -C "your_email@example.com" and just press enter
+   skip all the things and Press enter. 
+13.Ensure the ssh-agent is running: eval $(ssh-agent -s)
+14.Add your SSH private key to the ssh-agent: ssh-add ~/.ssh/id_rsa
+15.Open previous page and click on "Adding a new SSH key to your GitHub account"
+16.Copy the SSH key to your clipboard :- run this comand in git bash: clip < ~/.ssh/id_rsa.pub
+17.Click on New SSH key give the title and copy ssh key in Key space (just do ctrl+v) and click "Add SSH key"
+18.Enter your password then it will be added
+19.Now if we modified anything in the files we can update as follows
+  git add .
+  git commit -m "first commit"
+  git remote add origin git@github.com:sanjaygd/doc-repo.git
+  git push -u origin master
+20.Now if we reload our git page we can notify changes as number of commits will be increased.
+21.Run the bellow comand to pull the changes from git
+  git pull origin master
+
+
+
+22. Follow the below comand in case of 
+
+--> 	! [rejected]        master -> master (non-fast-forward)
+	error: failed to push some refs to 'ssh://...'
+
+
+-->
+this always means that you didn't synchronize the remote repository with local repo,so first you should synchronize them by using command git pull as following:
+
+git checkout master    
+git pull origin master 
+
+after this process ,you will synchronize them ,and then you can push changes to remote repo by followings:
+
+git add [filename/directory]  
+git commit -m"input your message"   
+git remote add origin https://github.com//yourname.git     
+git push origin master

@@ -1,0 +1,144 @@
+----------#----- Create Repo    ---------#-------#--------
+
+#Create the repository on github for online usage and follow the below steps to create local repository.
+
+*To create local repository go to the needed directory and ru the following comand.
+1.git init
+
+
+
+----------#---  Synching Repos  -----#-------#------
+
+*To synch the repository
+1. git remote add origin "SSH address"
+
+*To copy the files of the synched master in the cloud to local repository.
+1. git pull origin master
+
+
+
+----------#-------- Making Changes   ----#------#------- 
+
+📜️*Undoing the work in unstaged file
+1.git checkout file_name
+
+
+*To stage the file to git.
+1. git add file_name
+
+
+*To see the changes.
+1. git status
+
+
+*To commit the staged file.
+1. git commit -m "This is my first commit"
+
+📜️*To change the message of the happened commit.(Note:This rewrite the history)
+1. git commit --amend -m 'message has changed' 
+
+
+📜️*Pick and place commit from one branch to another branch(usefull when commited in wrong branch by mistakenly)
+1.git log
+-->Go to the branch where you have commited mistakenly or the commit which not required in this branch and perform following comand and copy the first 3 to 4 charecters of the hash.
+
+
+-->switch to branch you wnat place the commit and runn the following comand.
+1.git cherry-pick bb6b05e
+
+
+📜️*removing the happend commit
+--> Go to respective branch to be remove commit. run git log comand. cpoy the 3 to 4 charectors of the hash of the "recent but one" commit and run the following comand. (Note:This will carry that commit into staging area we need remove that using default reset method.
+1. git reset --soft 
+
+-->.Copy the hash of the same commit that we have copied earlier while doing cherry-pick then run the comand below.(Note:This will unstage the files)
+1.git reset bb6b05e
+
+-->Run the hard reset to remove completely any modification.(This will reset on tracked file untracked file remain same)
+1. git reset git reset --hard bb6b05e
+
+-->Removing the untracked files.
+1. git clean -df
+
+
+
+📜️*Adding the removed commit back to git.(even if we hard reset commits willbe stored in cache for 30 day we can makes use out of that)
+--> Run the following comand to know the cashed hash.
+1.git reflog 
+
+-->Copy the hash that you want to readd to git and run the bellow comand.(Note: Now it will be in detached head state)
+1. git checkout bb6b05e
+
+
+-->Create an another branch to backup newly added commit.(Note: Now commit added to the newly created branch)
+1.git branch backup
+
+-->Switch to master branch and switch back to backup branch and check the logs.(Note: Now git come back to detached head state to Head state)
+1. git log
+
+
+
+📜️*Rverting the changed commit.(It will undo the commits action without deleting that commit)
+git revert bb6b05e
+
+-----     -----    ------   ---
+
+*To add multiple files.
+1. git add -A
+
+
+*To commit multiple files to repository.
+1. git commit -a -m "added multiple files to repositoy"
+
+
+*To commit previos action on the repository 
+1. git log
+
+
+📜️*Finding the difference between the two commits.
+1.git diff bb6b05e 652d123d
+
+----------#-------- Parallel devolpment   -----#-----------#-------
+#*Branching
+#*Merging
+#Rebasing
+
+
+*To create branch
+1. git branch branch_name
+
+
+*To change the working branch (from master to other OR other branch to some other branch).Now onwoards whatever the changes made in this directory going to update to new branch.
+1.git checkout branch_name
+
+
+*To merge the branches. checkout to distanition branch(branch to which new branch is goinig to merge) and perform following command.
+1. git merge branch_name 
+
+
+*To rebase the branches. checkout to the distination branch(eg. say master is distination branch v1 is new branch if you want to add the feature of the v1 to msater checkout to master branch and follow the below comands and it is visa-versa)
+1. git rebase branch_name
+
+
+
+------------#-------- SSH -Key generation and authentication ----#-------#-----
+
+*To generate the SSH key
+1. ssh-keygen
+
+
+*Copy the saved path after running the above command which is displayed the path and perform the below code.
+1. cat /saved/path/
+
+
+*Copy the entire key and go to the github -> settings -> SSH and GPG keys -> New SSH key. add the Title and paste the key and click on Add ssh key
+
+
+*Authenticating the SSH key by github.
+1.ssh -T git@github.com
+
+
+
+
+
+

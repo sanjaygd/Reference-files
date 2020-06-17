@@ -1,0 +1,10 @@
+ref :
+https://www.youtube.com/watch?v=OD6OVvOksYY&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=7
+
+🍉️1.where clause and equal, not equal, greater than, less than, greater than or equal to, less than or equal to.
+	select * where age=26;
+	select * where age!=26;
+	select * where age>29;
+	select * where age<30;
+	select * where age<=25;
+	select * where age>=21;

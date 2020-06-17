@@ -1,0 +1,9 @@
+1.Open models.py and add below line under the "class song"
+  is_favorite = models.BooleanField(default=False)
+2.Open comand prompt
+3.python manage.py makemigrations
+4.Python manage.py migrate (whenever we changes the structure of the data base we need to restart
+  server)
+5.Open music/urls.py and add below code in url mapping
+   url(r'^(?P<album_id>[0-9]+)/favorite/$', views.favorite, name='favorite'),
+  

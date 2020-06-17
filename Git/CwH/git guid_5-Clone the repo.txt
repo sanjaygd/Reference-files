@@ -1,0 +1,7 @@
+1.Open the directory where want clone Create new folder and open the git bash 
+2.Open the git hub and serch for the repository which you want to clone, copy SSH key
+3.run the following comand in git bash
+	git clone git@github.com:sanjaygd/My-first-repo.git
+
+4.If we want all the files without a folder we can do that by following comand
+	git clone git@github.com:sanjaygd/My-first-repo.git .

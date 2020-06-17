@@ -1,0 +1,21 @@
+***Working with files : cp command***
+
+1.cp -This command is used to copy the files and directories.
+
+2.cp -i -Enters the interactive mode, CLI ask before overwriting files.
+
+3.cp -n -Does not overwrite the file.
+
+4.cp -u -Updates the distination only when source file is different from destination file.
+
+5.cp -R Recursive copy, Copies even hidden files.
+
+6.cp -v -Verbose, Prints informative messages
+
+
+
+7.cp *.txt  -Copy all the files which are in txt formate.
+
+8.cp /home/sanjay/Desktop/test.txt .  -Copy the files to the current directory from other directory.
+
+

@@ -1,0 +1,47 @@
+
+*** Working with linux repository ***
+
+1.sudo apt-get install package_name  
+
+2.gedit .bashrc  (Note: Open home directory it will be existed as hidden file we can see by using ls -a) 
+
+3.source .bashrc  (To save the changes with .bashrc)
+
+
+*** Working with tar files ***
+
+1.tar -cvf new_filename.tar filename_to_be_compressed  (Note : To compress the file)
+
+2.tar -xvf filename_to_be_compressed.tar  (Note : To decompress the file)
+
+
+*** working the environment variable ***
+
+1.printenv  -Print the list of all environment variable.
+
+2.echo $HOMEb -This will print the path of the home directory of the user.
+
+3.echo $PATH  -It is a colon-seperated list of directories in which shell looks for the commands.
+
+4.echo $HOSTNAME  -This will print the hostname.
+
+5.echo $USERNAME  -This will print the username.
+
+6.echo $LANG  -This will print language being used.
+
+echo $BASH_VERSION This will print the version of this instance of bash.
+
+
+*** Working with regular expression ***
+
+Regular expressions are used to search through data. it can be piped along with the 'grep' command to find pattern of text in the file.
+
+1. .  -Replaces any charecter.
+2. ^  -Matches the start of the string.
+3. $  -Matches the end of the string.
+4. *  -Matches the preceding charecter zero or more times.
+5. ?  -Matches the preceding charecter one or more times.
+6. () -groups regular expression.
+7. \  -Represents special charecters.
+
+

@@ -1,0 +1,95 @@
+
+🍉️ 2.1 GIT BASICS - GETTING A GIT REPOSITORY
+
+$ git init
+
+
+$ git add *.c
+$ git add LICENSE
+$ git commit -m 'initial project version'
+
+
+🍉️ 2.2 GIT BASICS - RECORDING CHANGES TO THE REPOSITORY
+
+$ git status
+
+$ echo 'My Project' > README
+
+$ git add README
+
+$ git status -s OR $ git status --short (To get status in short form)
+
+$ git diff
+
+$ git diff --staged (This command compares your staged changes to your last commit)
+
+$ git commit
+
+$ git commit -m "Story 182: Fix benchmarks for speed"
+
+$ git rm  (remove file from git as well as owrkspace)
+
+$ git rm --cached README (To remove from staged area)
+
+$ git mv file_from file_to (To rename the file)
+
+
+🍉️ 2.3 GIT BASICS - VIEWING THE COMMIT HISTORY
+
+$ git log
+
+$ git log -p -2 (To know the diff and can also limit the log entries)
+
+$ git log --stat (To prints below each commit entry a list of modified files)
+
+$ git log --pretty=oneline
+
+$ git log --pretty=format:"%h - %an, %ar : %s" (can print with the formate refer the documentation abbrivation)
+
+
+🍉️ 2.4 GIT BASICS - UNDOING THINGS
+
+$ git commit --amend
+
+$ git reset HEAD file_name (To unstage the file)
+
+git checkout -- <file> (Unmodifying the modified file)
+
+
+🍉️ 2.5 GIT BASICS - WORKING WITH REMOTES
+
+$ git remote (To check remote is added or not)
+
+$ git remote -v (To know remote url)
+
+$ git remote add <shortname> <url>  eg. git remote add pb https://github.com/paulboone/ticgit (adding the remote repository)
+
+git push <remote> <branch> (pushing the remote)
+
+$ git remote show origin (inspect the origin)
+
+$ git remote rename pb paul (Renaming the remote)
+
+$ git remote remove paul (Removing the remote)
+
+
+🍉️ 2.6 GIT BASICS - TAGGING
+
+$ git tag -a v1.4 -m "my version 1.4" (To create tag)
+
+$ git show v1.4 (To show tag)
+
+$ git tag v1.4-lw (To create light weight tag)
+
+$ git show v1.4-lw (To show light weight tag)
+
+$ git tag -a v1.2 9fceb02 (tagging later)
+
+$ git tag -a v1.2 9fceb02 (Tagging later)
+
+git push origin <tagname> (To push tag to remote)
+
+git tag -d <tagname> (deleting the tag)
+
+
+

@@ -1,0 +1,44 @@
+1. git --version
+2. git status
+3. git init
+4. git add .
+5. git rm --cached
+6. git commit -m "v1.0"
+7. git config --global user.email "your-name@email.com" (account email id)
+8. git config --global user.name "your_username" (account username) 
+9. git log
+10. git remote add origin (git@github.com:sanjaygd/doc-repo.git)<--example
+11. git push -u origin master
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NOTE: Follow the below comand in case of 
+
+--> 	! [rejected]        master -> master (non-fast-forward)
+	error: failed to push some refs to 'ssh://...'
+
+
+-->
+this always means that you didn't synchronize the remote repository with local repo,so first you should synchronize them by using command git pull as following:
+
+git checkout master    
+git pull origin master 
+
+after this process ,you will synchronize them ,and then you can push changes to remote repo by followings:
+
+git add [filename/directory]  
+git commit -m"input your message"   
+git remote add origin https://github.com//yourname.git     
+git push origin master

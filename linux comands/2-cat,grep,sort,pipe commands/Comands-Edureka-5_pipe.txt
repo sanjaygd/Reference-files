@@ -1,0 +1,9 @@
+
+*** Working With Pipe command ***
+
+The '|' command a.k.a 'pipe' command is used to output the result of one command as input to another command. '|' used to perform the two operation in the same command.
+
+1.grep I'm file1.txt file2.txt | sort -Search for the string "I'm" from both the files and sort the result.
+
+2.grep I'm file1.txt file2.txt | sort -Sort the result in the reverse order.
+

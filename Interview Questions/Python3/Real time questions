@@ -1,0 +1,1 @@
+1. Convering dec to oct use oct() to conver oct to dec will be like this int('0101', 8)

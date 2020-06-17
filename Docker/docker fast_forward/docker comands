@@ -1,0 +1,147 @@
+💥️First docker container
+--> after installing docker on ubuntu
+1. docker run busybox echo hello world...
+
+2. docker run -it debian bash
+
+
+💥️Stoping/Killing container
+1. docker kill <container_id> (This will end the container immediatly)
+2. docker stop <container_id>
+
+
+💥️Downloading the docker image from the registry.
+1. docker pull <image_name> (eg. docker pull busybox)
+
+
+💥️To know about last ran docker.
+1. docker ps -l
+
+💥️To build new image need make some changes in the already existed image follow the bellow example.
+--> enter inside the debian bash
+1. docker run -it debian bash
+
+-->Now You are inside the debian bash
+1. apt-get update
+2. apt-get upgrade
+
+3. apt-get update -y
+4. apt-get upgrqade -y
+5. apt-get install -y openssh-server
+6. mkdir /var/run/sshd
+7. echo root:root | chpasswd
+
+8. apt-get install wget
+9. apt-get install curl
+
+-->To save the changes.
+1. docker commit <container_id> (you can get id of container using "docker ps -l"new image will be created with new id. The new container will be saved without repository name and Tag)
+
+💥️Naming the repository. We can name the reopsitory two types if the modified container not saved we can use commit method if it is already saved we can use tag method show below respectively.
+1. docker commit <container_id> my_image
+2. docker tag <container_id> my_image
+
+
+💥️Some docker comands.
+1. docker ps (To check background running container)
+2. docker ps -a (To list the container befor we ran on the docker system)
+3. docker ps -aq (To list the container with only container id)
+4. docker ps -l (To list last ran container)
+5. docker rm <container_id> (delete the container)
+6. docker images (To list the images)
+7. docker images -q (To list the images with only image_id)
+8. docker rmi <image_id> (To remove the image)
+9. docker rmi -f <image_id> (To remove image forcefully)
+10 docker (if type docker and press enter we can get related comands)
+
+
+💥️ Building Docker image with dockerfile
+--> Creat the directory go to that directory create Dockerfile named text file (use touch Dockerfile) and write the following comand inside the text file and save the file.
+
+FROM debian
+RUN apt-get update
+RUN apt-get upgrade
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt-get install -y openssh-server
+RUN mkdir /var/run/sshd
+RUN echo root:root | chpasswd
+
+RUN apt-get install wget
+RUN apt-get install curl
+
+-->Come out of the editor and run the below command.
+1.docker build -t my_debian_image .  (. represents the current directory if we are in some other directory we need to specify the Dockerfile path like this "Docker build -t my_image /home/djangoVc/DockerProject/Dockerfile" )
+
+
+💥️Docker history and other commands.
+1. docker history my_debian_image (To know the recorded history of the particular image)
+
+
+💥️ Dockerfile CMD
+--> Add the below comand to the Dockerfile and come out of the nano editor and follow the docker build step 
+1. RUN wget http://ifconfig.me/ip
+
+
+💥️Dockerfile ENTRYPOINT
+--> We can use entrypoint instead of CMD comandas below.
+FROM debian 
+RUN apt-get update
+RUN apt-get upgrade
+RUN apt-get install -y wget
+ENTRYPOINT ["wget", "-O-", "-q"]
+
+--> While running this docker file we need to provide URL as below.
+1. docker run debian_up_3.o http://ifconfig.me/ip
+
+-->Can use both the command as below.
+FROM debian
+RUN apt-get update
+RUN apt-get upgrade
+RUN apt-get install -y wget
+ENTRYPOINT ["wget", "-O-", "-q"]
+CMD http://ifconfig.me/ua
+
+
+💥️Docker networking.
+1.docker run -d --publish-all jpetazzo/web (To download the web service and access the server through local network)
+
+2. docker run -d -p 81:8000 jpetazzo/web (To change the port number)
+
+3.docker inspect --format '{{ .NetworkSettings.IPAddress }}' d4f11--> This is address obtained after running above command
+
+4.ping 172.17.0.2(ip address will be obtained after running the above address)
+
+
+💥️Removing docker images and container.
+--> Removing the container.
+1. docker rm $(docker ps -a -q)
+2. docker rmi $(docker images)
+
+
+💥️ Running PHP with Apache2
+-->Create a new directory open it and create below files.
+*Dockerfile, apache-config and one more directory called /www/
+
+1.Refer djangoVc/docker_test/PHP_website for the detail
+
+2.docker build -t my_site (To build PHP website image)
+
+
+💥️ Docker Volumes.
+1. docker run -d -p 8080:80 my_site (To run the built docker container with port menstioned as localhost)
+2. docker run -it -p 8080:80 my_site bash (To run docker container in interactive manner)
+3. docker run -it -p 8080:80 -v /home/sanjay/djangoVc/docker_test/php_volume:/var/www/site --name mywww my_site bash (To specify container name and to create volume)
+4. copy the php file which is existed in /var/www/site to php_volume and refresh the page you will find the changes.
+5. docker run -d -p 8080:80 -v /home/sanjay/djangoVc/docker_test/php_volume:/var/www/site my_site
+
+💥️Creating the volume using new image.
+1. docker run -it --name alpha -v /var/myvolume ubuntu
+
+💥️ Sharing the container. 
+1. docker run -it --name beta --volumes-from alpha ubuntu
+
+
+💥️ Inspecting the docker container and images.
+1. docker inspect alpha OR docker inspect alpha | less (alpha is the container name)
+2. docker inspect my_site OR docker inspect my_site | less (my_site is image name)

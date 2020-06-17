@@ -1,0 +1,2 @@
+1.Download the postgres in their official website, install it and set the password.
+2.Download the PgAdmin install it.

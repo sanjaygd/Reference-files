@@ -1,0 +1,31 @@
+1.Open pgadmin and create new data base by right click on database(1) 
+2.Open settings.py and make following changes
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'telusko',
+        'USER': 'postgres',
+        'PASSWORD' : '1234',
+        'HOST': 'localhost',
+        'PORT':'5432',
+    }
+}
+
+3.Open comand prompt and install psycopg2 by following comand line pip install psycopg2
+4.Open model.py and create database blueprint as follows
+
+    class Destination(models.Model):
+    name = models.CharField(max_length=100)
+    img = models.ImageField(upload_to='pics')
+    desc = models.TextField()
+    price = models.IntegerField
+    offer = models.BooleanField(default=False)
+
+5.Add 'travello.apps.TravelloConfig' in installed app.
+6.Go to comand prompt and and run following comand line "python manage.py make migrations".
+7.To check migrations run the following comand "python manage.py sqlmigrate 0001"
+8.To make final migrations to the database run following code python manage.py migrate.
+9.Open pg admin and check the database wether table created or not.
+10.If need to remigration just do required changes in models.py and and follow the step number 6 and 8 
+   once again and and select the option 1 and and enter then give value 0

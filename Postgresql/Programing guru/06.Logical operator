@@ -1,0 +1,26 @@
+ref :
+https://www.youtube.com/watch?v=jrx8YgBbUAQ&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=10&t=0s
+
+🍉️1. logical operators and, or, is null, like, in, between, 
+  --> select * from company where age>26 and salary>60000;  (Note : and)
+
+  --> select * from company where age<26 or salary>70000;   (Note : or)
+  
+  --> select * from company where salary is null;   (Note : is null)
+
+  --> select * from company where name like 'S%';   (Note : like - names start with S)
+  
+  --> select * from company where name like '%s';   (Note : like - names ends with s)
+
+  --> select * from company where name like '%a%';  (Note : like - names which are having a any any posision)
+  
+  --> select * from company where name like 'p_%_%_%_'; (Note : name which are having at least 4 charectors and starts with p)
+
+  --> select * from company where name like '_e%a';  (Note : name which is having 2nd char as e and ends with a)
+
+  --> select * from company where name like 'H___a'; (Note : name which is starts with H and ends with a after 4 char.)
+  --> select * from company where age in (25,30,40); (Note : in)
+
+  --> select * from company where age between 23 and 29;  (Note : between)
+
+

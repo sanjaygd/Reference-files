@@ -1,0 +1,21 @@
+1.To check which branch we are working in :-
+	git branch
+
+2.To create new branch.
+	git branch filename
+
+3.To switch branch.
+	 git checkout branch_name
+
+4.Make the required chnages and push to the repository(You chan check in github no. of branch will be increased)
+
+5.If we want to merge login system with master follo the bellow steps.
+
+6.First swith the branch
+	git checkout master
+	
+6.Then merge
+	 git merge login-system
+
+7.To delet unwanted branches
+	 git push origin --delet login-system (login system is branche name here)

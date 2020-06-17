@@ -1,0 +1,10 @@
+1.Open views.py
+2.add --> from django.http import Http404
+3.Create a details.html in template/music directory
+4.change the detail function as bellow
+  def detail(request, album_id):
+	try:
+	   album = Album.objects.get(pk=album_id)
+	except Album.DoesNotExist:
+	   raise Http404("Album doesnot exist")
+	return render(request, 'music/details.html', {'album': album})

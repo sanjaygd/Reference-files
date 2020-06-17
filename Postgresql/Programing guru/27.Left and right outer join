@@ -1,0 +1,12 @@
+ref :
+https://www.youtube.com/watch?v=WYuylgAr-ik&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=34
+https://www.youtube.com/watch?v=6WS1wqdq33w&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=35
+
+🍉️1.using left and right outer join.
+  --> select sl_no,names,age,company,dep_id,name from employee left outer join department on employee.sl_no=department.dep_id;
+  --> select sl_no,names,age,company,dep_id,name from employee right outer join department on employee.sl_no=department.dep_id;
+  --> select sl_no,names,age,company,dep_id,name from employee full outer join department on employee.sl_no=department.dep_id;
+
+🍉️2.using alias for same query.
+  --> select sl_no,names,age,company,dep_id,name from employee e full outer join department d on e.sl_no=d.dep_id;
+

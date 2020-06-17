@@ -1,0 +1,12 @@
+ref :
+https://www.youtube.com/watch?v=4EOzwZ1kjRQ&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=5&t=0s
+
+🍉️1. Go to postgres shell connect the database
+  --> create table employ(id int primary key not null, name char(50), salary real);
+
+
+🍉️2.Deleting the table.
+  --> drop table student	(Note : student is the table name)
+
+
+

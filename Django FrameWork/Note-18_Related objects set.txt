@@ -1,0 +1,13 @@
+making link between Album class and song class
+1.Open comand prompt
+2.python manage.py shell
+3.from music.models import Album,song
+4.album1=Abum.objects.get(pk=1) //we can check by this way(album1.artist)
+5.song=song()
+6.song.album=album1
+7.song.file_type = 'mp3'
+8.song.song_title = 'I love my boyfriend'
+9.song.save()
+10.we can check recent changes by this
+   album1.song_set.all()
+11.album1.song_set.create(song_title='i love bacon', file_type='mp3')

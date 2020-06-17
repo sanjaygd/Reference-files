@@ -1,0 +1,18 @@
+ref :
+https://www.youtube.com/watch?v=IWltG9Hhuv4&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=3
+
+🍉️1. Creating the database.
+  --> create database expy;	(Note: expy is database name) 
+
+🍉️2.Connecting the database.
+  --> \c expy		(Note: expy is the database name)
+
+🍉️3.Connecting the default database.
+  --> \c postgres	
+
+🍉️4.Deleting the database.
+  --> drop database expy
+
+🍉️5.Exiting the postgres shell.
+  -->\q
+

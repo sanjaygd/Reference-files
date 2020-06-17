@@ -1,0 +1,58 @@
+1.Open pycharm create new project name it as telusko
+
+2.Open project directory in comand propmt and create an app using below comand line
+  -->python manage.py startapp calc
+
+3.Open app directory in pycharm and create new url.py file and write the below code
+
+from django.urls import path
+from  . import views
+
+urlpatterns = [
+    path('', views.home, name='home')
+]
+
+
+4.Open view.py and write following code
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse('hello world')
+
+
+5.Open telusko/urls.py and write following code
+
+
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('calc.urls'))
+]
+
+
+6.Open views.py and change the code as follows
+
+from django.shortcuts import render
+
+
+def home(request):
+    return render(request, 'home.html')
+
+
+7. makeing the data dynamic by passing the context value
+
+from django.shortcuts import render
+
+**in views.py
+def home(request):
+    return render(request, 'home.html', {"name": "Sanjay" })
+**in home.html
+<h1>Hello {{ name }}</h1>
+
+
+
+

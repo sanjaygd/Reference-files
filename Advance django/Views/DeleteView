@@ -1,0 +1,99 @@
+🍅️Ancestors(MRO)
+
+1. django.views.generic.detail.SingleObjectTemplateResponseMixin
+2. django.views.generic.base.TemplateResponseMixin
+3. django.views.generic.edit.BaseDeleteView
+4. django.views.generic.edit.DeletionMixin
+5. django.views.generic.detail.BaseDetailView
+6. django.views.generic.detail.SingleObjectMixin
+7. django.views.generic.base.View
+
+
+
+💎️1.django.views.generic.detail.SingleObjectTemplateResponseMixin
+
+    1.Methods and Attributes -->
+
+     1.template_name_field
+     2.template_name_suffix
+     3.get_template_names()
+
+
+💎️2.django.views.generic.base.TemplateResponseMixin
+
+    1.Attributes-->
+
+     1.template_name
+     2.template_engine
+     3.response_class
+     4.content_type
+
+    2.Methods-->
+
+     1.render_to_response(context, **response_kwargs)
+     2.get_template_names()
+
+
+💎️4. django.views.generic.edit.DeletionMixin
+
+    1.Methods and Attributes
+
+      1.success_url
+      2.delete(request, *args, **kwargs)
+      3.get_success_url()
+
+
+  2.django.views.generic.detail.SingleObjectMixin
+
+   1.Methods and Attributes-->
+
+    1.model✔️
+    2.querset✔️
+    3.slug_field
+    4.slug_url_kwarg
+    5.pk_url_kwarg
+    6.context_objects_name
+    7.query_pk_and_slug
+    8.get_object(queryset=None)
+    9.get_queryset()
+    10.get_context_object_name(obj)
+    11.get_context_data(**kwargs)✔️
+    12.get_slug_field()
+
+
+
+
+💎️6.django.views.generic.detail.SingleObjectMixin
+
+   1.Methods and Attributes-->
+
+    1.model✔️
+    2.querset✔️
+    3.slug_field
+    4.slug_url_kwarg
+    5.pk_url_kwarg
+    6.context_objects_name
+    7.query_pk_and_slug
+    8.get_object(queryset=None)
+    9.get_queryset()
+    10.get_context_object_name(obj)
+    11.get_context_data(**kwargs)✔️
+    12.get_slug_field()
+
+
+
+
+
+💎️7.django.views.generic.base.View
+	1.Method Flowchart
+	  1.setup()
+	  2.dispatch()
+	  3.http_method_not_allowed()
+	  4.options()
+
+
+🍅️2.Attributes
+
+    1.template_name_suffix
+    2.object
+

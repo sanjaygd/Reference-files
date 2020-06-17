@@ -1,0 +1,1 @@
+﻿1.'get' and 'post' works with respect to django.2.'get' and 'post' works after "action = "kh/jk"" takes place.3.always need to fill name="" action and get and post inorder to work properly wether it is bootstrap or   normal html.4.

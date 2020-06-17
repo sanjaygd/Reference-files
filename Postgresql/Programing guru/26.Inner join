@@ -1,0 +1,5 @@
+ref :
+https://www.youtube.com/watch?v=DR0CQs2ZqR0&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=32
+
+🍉️1.using the inner join.
+  --> select sl_no, age,company from employee inner join department on employee.sl_no=department.dep_id;	(Note: it will join thye rows which are having same pk)

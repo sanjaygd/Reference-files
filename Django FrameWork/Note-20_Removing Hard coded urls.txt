@@ -1,0 +1,13 @@
+1.Open details.html
+
+{%if all_albums %}
+<h3> Here are all my albums :</h3>
+
+<ul>
+	{% for song in album.song_set.all %}
+	<li><a href="{% url 'details' album.id%}"> {{ album.album_title}}</li>
+	{% endfor %}
+</ul>
+{% else %}
+	<h3> You don't have any albums </h3>
+{% endif}

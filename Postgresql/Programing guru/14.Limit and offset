@@ -1,0 +1,9 @@
+ref :
+https://www.youtube.com/watch?v=KLqODQh6VjU&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=17&pbjreload=10
+
+🍉️1.limiting the values.
+  --> select * from company limit 3;
+
+🍉️ 2.offsetting the values.
+  --> select * from company limit 3 offset 3;
+

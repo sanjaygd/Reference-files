@@ -1,0 +1,14 @@
+1.Open views.py
+2.Add --> from .models import Album
+3.change the HttpResponse as folowing steps
+4.creating the variable called all_albums just to store all albums
+
+def index(request):
+	all_albums=Albums.objects.all()
+	html = ''
+	for album inn all_albums:
+	url = '/music/' + str(album.id) + '/'
+	html += <a href="' + url + '">' + album.album_title + '</a><br>'
+     return HttpResponse(html)
+
+  

@@ -1,0 +1,14 @@
+1.Open models.py
+2.add the bello function after class Album 
+  def__str__(self):
+	return self.album_title+ ' - ' + self.artist
+
+3.check in comand prompt
+  python manage.py shell
+4.from music.models import Albums,song
+5.Album.objects.all()
+6.Filtering
+  Album.objects.filter(id=1)
+  Album.objects.filter(id=1)
+  Album.objects.filter(artist__startswith='Taylor')
+  

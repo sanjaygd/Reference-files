@@ -1,0 +1,27 @@
+Basic 
+1. docker version
+2. docker -v
+3. docker --help (eg. docker image --help)
+
+*Images
+1. docker images
+2. docker pull (eg. docker pull ubuntu)
+3. docker rmi (Use to remove images)
+--> get the docker image id using below command
+	docker images -q or docker images -a  copy the id and perform following comand
+4. docker rmi <image_id>
+
+
+*Container
+1. docker ps OR docker ps -a OR docker ps -q
+2. docker run (eg. docker run -it ubuntu -->It will take inside the ubuntu terminal)
+3. docker start (eg. docker start <container_id>)
+4. docker stop (eg. docker stop <container_id>)
+
+
+*System
+1. docker stat (To know the container usage)
+2. docker system df (To know container, images as overall)
+3. docker system prune (Warning: To remove unused and cached images and cotainers usually however we can del	et used container and images)
+
+

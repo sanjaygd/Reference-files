@@ -1,0 +1,29 @@
+ref :
+https://www.youtube.com/watch?v=LQUsQHp9ToU&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=23
+
+🍉️1.creating the table with json datatype.
+  --> create table jsondata(id integer,
+	doc JSON);
+
+🍉️2.insert into jsaondata values(2, '{
+	"name":"rahul",
+	"address":{
+	"line1":"skas sdsd",
+	"line2":"yjhg",
+	"pincode":"56543"
+	}
+	}');
+
+🍉️3.querying the data.
+  --> "{
+	"line1":"ask alsk",
+	"line2":"weoir",
+	"pincode":"577243"
+	}"
+
+🍉️4.specifying the data in the curly bracket.
+  -->select doc-> 'address'->>'pincode' from jsaondata;
+
+🍉️5.Equivelent query to above one.
+  --> select doc#>>'{address,line2}'from jsaondata;
+

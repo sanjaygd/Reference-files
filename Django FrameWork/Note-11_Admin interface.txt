@@ -1,0 +1,8 @@
+1.Open comand prompt
+2.Open project directory
+3.python manage.py createsuperuser
+4.set email address and password.
+5.check in browser by following link 27.0.0.1:8000/admin/
+6.Adding albums to the admin section
+  from .models import Album
+  admin.site.register(Album)

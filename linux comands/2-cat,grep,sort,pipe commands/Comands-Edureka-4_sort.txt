@@ -1,0 +1,13 @@
+
+*** Working with sort command ***
+
+We use the 'sort' command to sort the result of search eitther alphabetically or numerically. Files, file contents and directories can be sorted.
+
+1.sort file.txt -Sorts the content of the file.txt and returns them in alphabetical order
+
+2.sort file1.txt file2.txt -Sort the content of both the files.
+
+3.sort -f file.txt - 'f' flag does case insensitive sorting.
+
+4. sort -n file.txt - 'n' flag returns the results as per numerical order.
+

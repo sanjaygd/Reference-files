@@ -1,0 +1,16 @@
+ref :
+https://www.youtube.com/watch?v=dg8sJO0r8ws&list=PLk1kxccoEnNEtwGZW-3KAcAlhI_Guwh8x&index=21
+
+🍉️1.creating the enum datatype.
+  --> create type mood as ENUM('sad','ok','happy');
+
+🍉️2.creating the table for above datatype.
+  --> create table person(
+	name, text,
+	current_mood mood);
+
+🍉️3.Inserting the data into table.
+  --> insert into person values('vikas', 'happy'),('vishal','sad');
+
+🍉️4.Using order by clause.
+  -->select * from person order by current_mood DESC;
